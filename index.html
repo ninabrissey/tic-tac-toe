@@ -15,18 +15,18 @@
       </h2>
     </section>
     <main>
-      <h1>it's <img src="assets/hexagon-transparent.png" alt"hexagon"/>'s turn</h1>
+      <h1><div>it's</div><img src="assets/hexagon-transparent.png" alt"hexagon" class="player-turn-icon"/><div>'s turn</div></h1>
       <div class="game-board">
-        <section class="buttons">
-          <button class="btn-1"></button>
-          <button class="btn-2"></button>
-          <button class="btn-3"></button>
-          <button class="btn-4"></button>
-          <button class="btn-5"></button>
-          <button class="btn-6"></button>
-          <button class="btn-7"></button>
-          <button class="btn-8"></button>
-          <button class="btn-9"></button>
+        <section class="buttons" id='gameBoard'>
+          <button class="btn btn-1" id="1"></button>
+          <button class="btn btn-2" id="2"></button>
+          <button class="btn btn-3" id="3"></button>
+          <button class="btn btn-4" id="4"></button>
+          <button class="btn btn-5" id="5"></button>
+          <button class="btn btn-6" id="6"></button>
+          <button class="btn btn-7" id="7"></button>
+          <button class="btn btn-8" id="8"></button>
+          <button class="btn btn-9" id="9"></button>
         </section>
     </div>
     </main>
@@ -36,8 +36,8 @@
         <p>0 wins</p>
       </h2>
     </section>
-    <script type="text/javascript" src="player.js"></script>
     <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="player.js"></script>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
