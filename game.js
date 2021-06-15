@@ -4,7 +4,6 @@ class Game {
     this.playerTwo = new Player('two', '<img class="game-board-piece" src="assets/hexagon-transparent.png" alt="hexagon">');
     this.totalPlays = 0;
     this.winner = false;
-    this.draw = false;
     this.currentMove;
   };
 
@@ -40,7 +39,6 @@ class Game {
       this.playerTwo = new Player('two', '<img class="game-board-piece" src="assets/hexagon-transparent.png" alt="hexagon">');
       this.totalPlays = 0;
       this.winner = false;
-      this.draw = false;
       this.currentMove;
     }
   }
