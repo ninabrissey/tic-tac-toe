@@ -11,6 +11,7 @@ var playerTurnDisplay = document.getElementById('playerTurnDisplay');
 var winnerDisplay = document.getElementById('winnerDisplay');
 var winnerIcon = document.getElementById('winnerIcon');
 var playerIcon = document.getElementById('playerIcon');
+var drawDisplay = document.getElementById('drawDisplay')
 
 //Event Listeners 👇
 gameBoard.addEventListener('click', markTicOrTac);
@@ -53,6 +54,7 @@ function resetBoard() {
     buttons[i].innerHTML = '';
     buttons[i].disabled = false;
     show(playerTurnDisplay);
+    hide(drawDisplay);
     hide(winnerDisplay);
     playerIcon.src = "assets/circle-transparent.png";
   }
@@ -72,6 +74,7 @@ function displayWinner() {
     }
     show(winnerDisplay);
     hide(playerTurnDisplay);
+    hide(drawDisplay);
     winnerIcon.src = 'assets/circle-transparent.png';
     playerOneWinCount.innerText = `${game.playerOne.wins} wins`;
     setTimeout(resetBoard, 3500);
@@ -83,18 +86,19 @@ function displayWinner() {
     }
     show(winnerDisplay);
     hide(playerTurnDisplay);
+    hide(drawDisplay);
     winnerIcon.src = 'assets/hexagon-transparent.png';
     playerTwoWinCount.innerText = `${game.playerTwo.wins} wins`;
     setTimeout(resetBoard, 3500);
     return;
   }
-  if (game.totalPlays === 9) {
+  if (!game.winner && game.totalPlays === 9) {
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
     }
-    show(winnerDisplay);
+    hide(winnerDisplay);
     hide(playerTurnDisplay);
-    winnerDisplay.innerHTML = '<div>it\'s a draw... play again!</div>';
+    show(drawDisplay);
     setTimeout(resetBoard, 3500);
     return
   }
