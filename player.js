@@ -10,9 +10,9 @@ class Player {
   saveWinsToStorage() {
     var playerId = JSON.stringify(this.id);
     var winTotal = JSON.stringify(this.wins);
-    if (winTotal === 'null') {
-      winTotal = '0';
-    }
+    // if (winTotal === null) {
+    //   winTotal = '0';
+    // }
     localStorage.setItem(playerId, winTotal);
   };
 
@@ -20,10 +20,9 @@ class Player {
     var playerId = JSON.stringify(this.id);
     var retrievedWins = JSON.parse(localStorage.getItem(playerId));
     this.wins = retrievedWins;
+    if (this.wins === null) {
+      this.wins = '0';
+    }
   };
-
-  // resetPlayer() {
-  //
-  // };
 
 };
