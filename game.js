@@ -30,17 +30,12 @@ class Game {
         this.winner = true;
         player.isWinner = true;
         player.wins++;
-        console.log('winner')
-        return;
       }
-    }
-    if (!this.winner && this.totalplays === 9) {
-      this.draw = true;
     }
   };
 
   resetGame() {
-    if (this.winner || this.draw) {
+    if (this.winner || this.totalPlays === 9) {
       this.playerOne = new Player('one', '<img class="game-board-piece" src="assets/circle-transparent.png" alt="circle">');
       this.playerTwo = new Player('two', '<img class="game-board-piece" src="assets/hexagon-transparent.png" alt="hexagon">');
       this.totalPlays = 0;
