@@ -10,12 +10,12 @@
   <body>
     <section class="player-one">
       <h2>
-        <img src="assets/hexagon-transparent.png" alt"hexagon"/>
-        <p>0 wins</p>
+        <img src="assets/circle-transparent.png" alt="circle"/>
+        <p id="playerOneWins">0 wins</p>
       </h2>
     </section>
     <main>
-      <h1><div>it's</div><img src="assets/hexagon-transparent.png" alt"hexagon" class="player-turn-icon"/><div>'s turn</div></h1>
+      <h1 id="playerTurnIcon"><div>it's</div><img class="player-turn-icon" src="assets/hexagon-transparent.png" alt"hexagon"/><div>'s turn</div></h1>
       <div class="game-board">
         <section class="buttons" id='gameBoard'>
           <button class="btn btn-1" id="1"></button>
@@ -32,8 +32,8 @@
     </main>
     <section class="player-two">
       <h2>
-        <img src="assets/circle-transparent.png" alt="circle"/>
-        <p>0 wins</p>
+        <img src="assets/hexagon-transparent.png" alt"hexagon"/>
+        <p id="playerTwoWins">0 wins</p>
       </h2>
     </section>
     <script type="text/javascript" src="game.js"></script>

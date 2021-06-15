@@ -28,8 +28,10 @@ class Game {
     for (var i = 0; i < winCombos.length; i++) {
       if (player.moves.includes(winCombos[i][0]) && player.moves.includes(winCombos[i][1]) && player.moves.includes(winCombos[i][2])) {
         this.winner = true;
+        player.isWinner = true;
         player.wins++;
         console.log('winner')
+        return;
       }
     }
     if (!this.winner && this.totalplays === 9) {
