@@ -3,40 +3,53 @@ var game = new Game();
 
 // Query Selectors 👇
 var gameBoard = document.getElementById('gameBoard');
+var buttons = document.querySelectorAll('.btn');
 
-//Event Listeners 👇
-gameBoard.addEventListener('click', function(e) {
-  markTicOrTac(e)
-});
+// Event Listeners 👇
+gameBoard.addEventListener('click', markTicOrTac);
+window.addEventListener ('load', refreshWins);
 
-//Event Handlers and Functions
-//ASK ANNIE about this 👇
+// Event Handlers and Functions 👇
 function markTicOrTac(e) {
   game.currentMove = e.target.id;
   if (game.totalPlays % 2 === 0 && game.totalPlays < 9 && e.target.classList.contains('btn')) {
-      game.trackGameBoardPlays(game.playerOne);
-      displayToken(game.playerOne);
-      game.checkWinConditions(game.playerOne);
-      game.playerOne.saveWinsToStorage();
-      return;
+    game.trackGameBoardPlays(game.playerOne);
+    displayToken(game.playerOne, e.target);
+    game.checkWinConditions(game.playerOne);
+    game.playerOne.saveWinsToStorage();
+    game.playerTwo.saveWinsToStorage();
+    game.resetGame();
+    resetBoard();
+    return;
   }
 
   if (game.totalPlays % 2 === 1 && game.totalPlays <= 9 && event.target.classList.contains('btn')) {
-      game.trackGameBoardPlays(game.playerTwo);
-      displayToken(game.playerTwo);
-      game.checkWinConditions(game.playerTwo);
-      game.playerTwo.saveWinsToStorage();
+    game.trackGameBoardPlays(game.playerTwo);
+    displayToken(game.playerTwo, e.target);
+    game.checkWinConditions(game.playerTwo);
+    game.playerOne.saveWinsToStorage();
+    game.playerTwo.saveWinsToStorage();
+    game.resetGame();
+    resetBoard();
   }
 };
 
-//Can I pass the event in here as well from the function that this function invoked within instead of doing the query selector  ---  grab Justin's code from slack
-function displayToken(player) {
-  var buttonClicked = document.getElementById(game.currentMove);
-  buttonClicked.innerHTML = `${player.token}`;
-  buttonClicked.disabled = true;
+function displayToken(player, element) {
+  element.innerHTML = `${player.token}`;
+  element.disabled = true;
 };
 
+function resetBoard() {
+  if (game.winner || game.draw) {
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].innerHTML = '';
+      buttons[i].disabled = false;
+    }
+  }
+  refreshWins();
+};
 
-// displayNewGame() {
-//
-// };
+function refreshWins() {
+  game.playerOne.retrieveWinsFromStorage();
+  game.playerTwo.retrieveWinsFromStorage();
+};
