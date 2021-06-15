@@ -3,18 +3,26 @@ class Player {
     this.id = id;
     this.token = token;
     this.wins = 0;
+    this.isWinner = false;
+    this.moves = [];
   };
 
   saveWinsToStorage() {
-    localStorage.clear();
-    var key = JSON.stringify(this.id);
-    var playerStringified = JSON.stringify(this);
-    localStorage.setItem(key, playerStringified);
+    var playerId = JSON.stringify(this.id);
+    var winTotal = JSON.stringify(this.wins);
+    // if (winTotal === null) {
+    //   winTotal = '0';
+    // }
+    localStorage.setItem(playerId, winTotal);
   };
 
   retrieveWinsFromStorage() {
-    var key = JSON.stringify(this.id);
-    var retrievedWins = localStorage.getItem(key);
-    //will need to parseInt the value of the key to get the actual number 
+    var playerId = JSON.stringify(this.id);
+    var retrievedWins = JSON.parse(localStorage.getItem(playerId));
+    this.wins = retrievedWins;
+    if (this.wins === null) {
+      this.wins = '0';
+    }
   };
+
 };
