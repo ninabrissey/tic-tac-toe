@@ -4,12 +4,15 @@ var game = new Game();
 // Query Selectors 👇
 var gameBoard = document.getElementById('gameBoard');
 var buttons = document.querySelectorAll('.btn');
+var headerDisplay = document.getElementById('playerTurnIcon');
+var playerOneWinCount = document.getElementById('playerOneWins');
+var playerTwoWinCount = document.getElementById('playerTwoWins');
 
-// Event Listeners 👇
+//Event Listeners 👇
 gameBoard.addEventListener('click', markTicOrTac);
 window.addEventListener ('load', refreshWins);
 
-// Event Handlers and Functions 👇
+//Event Handlers and Functions 👇
 function markTicOrTac(e) {
   game.currentMove = e.target.id;
   if (game.totalPlays % 2 === 0 && game.totalPlays < 9 && e.target.classList.contains('btn')) {
@@ -17,9 +20,9 @@ function markTicOrTac(e) {
     displayToken(game.playerOne, e.target);
     game.checkWinConditions(game.playerOne);
     game.playerOne.saveWinsToStorage();
-    game.playerTwo.saveWinsToStorage();
-    game.resetGame();
     resetBoard();
+    game.resetGame();
+    refreshWins();
     return;
   }
 
@@ -27,10 +30,10 @@ function markTicOrTac(e) {
     game.trackGameBoardPlays(game.playerTwo);
     displayToken(game.playerTwo, e.target);
     game.checkWinConditions(game.playerTwo);
-    game.playerOne.saveWinsToStorage();
     game.playerTwo.saveWinsToStorage();
-    game.resetGame();
     resetBoard();
+    game.resetGame();
+    refreshWins();
   }
 };
 
@@ -44,12 +47,29 @@ function resetBoard() {
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].innerHTML = '';
       buttons[i].disabled = false;
+      // Add the <h1 innerText here> to change the inner text
     }
   }
-  refreshWins();
 };
 
 function refreshWins() {
   game.playerOne.retrieveWinsFromStorage();
   game.playerTwo.retrieveWinsFromStorage();
 };
+
+// function displayWinner ()
+//   if (game.winner && game.playerOne.isWinner) {
+//  headerDisplay.innerHTML = `<div>it's</div><img class="player-turn-icon" src="assets/circle-transparent.png" alt"circle"/><div>'s turn</div>`
+    // setTimeout(resetBoard, 3500);
+//     return;
+//   }
+//   if (game.winner && game.playerTwo.isWinner) {
+// headerDisplay.innerHTML = `<div>it's</div><img class="player-turn-icon" src="assets/hexagon-transparent.png" alt"hexagon"/><div>'s turn</div>`
+    // setTimeout(resetBoard, 3500);
+//     return;
+//   }
+//   if (game.draw && !game.winner) {
+// `<div>it's a draw... play again!</div>`
+    // setTimeout(resetBoard, 3500);
+//
+//   }
