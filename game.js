@@ -31,14 +31,4 @@ class Game {
       }
     }
   };
-
-  resetGame() {
-    if (this.winner || this.totalPlays === 9) {
-      this.playerOne = new Player('one', '<img class="game-board-piece" src="assets/circle-transparent.png" alt="circle">');
-      this.playerTwo = new Player('two', '<img class="game-board-piece" src="assets/hexagon-transparent.png" alt="hexagon">');
-      this.totalPlays = 0;
-      this.winner = false;
-      this.currentMove;
-    }
-  };
 };
