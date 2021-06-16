@@ -23,7 +23,6 @@ class Game {
       [1, 5, 9],
       [3, 5, 7]
     ];
-
     for (var i = 0; i < winCombos.length; i++) {
       if (player.moves.includes(winCombos[i][0]) && player.moves.includes(winCombos[i][1]) && player.moves.includes(winCombos[i][2])) {
         this.winner = true;
@@ -41,5 +40,5 @@ class Game {
       this.winner = false;
       this.currentMove;
     }
-  }
+  };
 };
