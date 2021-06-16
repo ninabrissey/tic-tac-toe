@@ -11,11 +11,13 @@ var playerTurnDisplay = document.getElementById('playerTurnDisplay');
 var winnerDisplay = document.getElementById('winnerDisplay');
 var winnerIcon = document.getElementById('winnerIcon');
 var playerIcon = document.getElementById('playerIcon');
-var drawDisplay = document.getElementById('drawDisplay')
+var drawDisplay = document.getElementById('drawDisplay');
+var newGameBtn = document.getElementById('newGameBtn')
 
 //Event Listeners 👇
 gameBoard.addEventListener('click', markTicOrTac);
 window.addEventListener ('load', refreshWins);
+newGameBtn.addEventListener('click', startOver);
 
 //Event Handlers and Functions 👇
 function markTicOrTac(e) {
@@ -114,4 +116,11 @@ function show(element) {
 
 function hide(element) {
   element.classList.add('hidden');
+};
+
+function startOver() {
+  localStorage.clear();
+  resetBoard();
+  refreshWins();
+  game.resetGame();
 };
