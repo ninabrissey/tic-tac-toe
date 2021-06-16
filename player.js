@@ -18,7 +18,7 @@ class Player {
     var retrievedWins = JSON.parse(localStorage.getItem(playerId));
     this.wins = retrievedWins;
     if (this.wins === null) {
-      this.wins = '0';
+      this.wins = 0;
     }
   };
 };
