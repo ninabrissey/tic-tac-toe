@@ -58,6 +58,7 @@ button {
   border-width: thick;
   height: 33.33%;
   width: 33.33%;
+  cursor: pointer;
 }
 
 .btn-1,
