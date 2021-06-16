@@ -23,24 +23,28 @@ function markTicOrTac(e) {
   if (game.totalPlays % 2 === 0 && game.totalPlays < 9 && e.target.classList.contains('btn')) {
     game.trackGameBoardPlays(game.playerOne);
     displayToken(game.playerOne, e.target);
-    game.checkWinConditions(game.playerOne);
-    game.playerOne.saveWinsToStorage();
     playerIcon.src = "assets/hexagon-transparent.png";
-    displayWinner();
-    game.resetGame();
-    refreshWins();
+    if (game.totalPlays > 4) {
+      game.checkWinConditions(game.playerOne);
+      game.playerOne.saveWinsToStorage();
+      displayWinner();
+      game.resetGame();
+      refreshWins();
+    };
     return;
   }
 
   if (game.totalPlays % 2 === 1 && game.totalPlays <= 9 && event.target.classList.contains('btn')) {
     game.trackGameBoardPlays(game.playerTwo);
     displayToken(game.playerTwo, e.target);
-    game.checkWinConditions(game.playerTwo);
-    game.playerTwo.saveWinsToStorage();
     playerIcon.src = "assets/circle-transparent.png";
-    displayWinner();
-    game.resetGame();
-    refreshWins();
+    if (game.totalPlays > 4) {
+      game.checkWinConditions(game.playerTwo);
+      game.playerTwo.saveWinsToStorage();
+      displayWinner();
+      game.resetGame();
+      refreshWins();
+    };
   }
 };
 
