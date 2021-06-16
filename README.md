@@ -1,6 +1,4 @@
 # tic-tac-toe
-<div style="text-align:center"><img width="127" alt="tic-tac-toe-logo" src="https://user-images.githubusercontent.com/80136642/122145014-51f57380-ce09-11eb-81c1-b3c936cb1c1d.png"></div>
-
 
 ## Table of Contents
   - [Introduction](#introduction)
