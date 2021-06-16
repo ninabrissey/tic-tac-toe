@@ -1,7 +1,7 @@
 class Player {
-  constructor(id, token) {
+  constructor(id, icon) {
     this.id = id;
-    this.token = token;
+    this.icon = icon;
     this.wins = 0;
     this.isWinner = false;
     this.moves = [];
@@ -10,9 +10,6 @@ class Player {
   saveWinsToStorage() {
     var playerId = JSON.stringify(this.id);
     var winTotal = JSON.stringify(this.wins);
-    // if (winTotal === null) {
-    //   winTotal = '0';
-    // }
     localStorage.setItem(playerId, winTotal);
   };
 
@@ -24,5 +21,4 @@ class Player {
       this.wins = '0';
     }
   };
-
 };
