@@ -28,11 +28,13 @@ function markTicOrTac(e) {
     playerIcon.src = "assets/hexagon-transparent.png";
     if (game.totalPlays > 4) {
       game.checkWinConditions(game.playerOne);
-      game.playerOne.saveWinsToStorage();
-      checkForWinAndResetGame();
-      game.resetGame();
-      refreshWins();
     }
+    if (game.winner || game.totalPlays === 9) {
+        game.playerOne.saveWinsToStorage();
+        checkForWinAndResetGame();
+        resetGame();
+        refreshWins();
+      }
     return;
   }
   if (game.totalPlays % 2 === 1 && game.totalPlays <= 9 && event.target.classList.contains('btn')) {
@@ -41,9 +43,11 @@ function markTicOrTac(e) {
     playerIcon.src = "assets/circle-transparent.png";
     if (game.totalPlays > 4) {
       game.checkWinConditions(game.playerTwo);
+    }
+    if (game.winner || game.totalPlays === 9) {
       game.playerTwo.saveWinsToStorage();
       checkForWinAndResetGame();
-      game.resetGame();
+      resetGame();
       refreshWins();
     }
   }
@@ -121,5 +125,9 @@ function startOver() {
   localStorage.clear();
   resetBoard();
   refreshWins();
-  game.resetGame();
+};
+
+function resetGame() {
+    game = new Game();
+    return game;
 };
