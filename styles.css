@@ -35,6 +35,10 @@ h1 {
   margin-right: 2.5%;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Game Board (bottom main)*/
 
 .game-board {
@@ -104,6 +108,20 @@ button {
   background-color: #B84149;
 }
 
+.new-game-btn {
+  background-color: #D48452;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 5%;
+  margin: 5%;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
 /* Player Tallies (side sections) */
 
 .player-one,
@@ -140,8 +158,4 @@ h2 {
 .game-board-piece {
   height: 60%;
   width: 60%;
-}
-
-.hidden {
-  display: none;
 }
