@@ -7,12 +7,12 @@ class Game {
     this.currentMove;
   };
 
-  trackGameBoardPlays(player) {
+  trackGameBoardPlays = (player) => {
       this.totalPlays++;
       player.moves.push(parseInt(this.currentMove));
   };
 
-  checkWinConditions(player) {
+  checkWinConditions = (player) => {
     var winCombos = [
       [1, 4, 7],
       [2, 5, 8],
@@ -23,12 +23,22 @@ class Game {
       [1, 5, 9],
       [3, 5, 7]
     ];
+
     for (var i = 0; i < winCombos.length; i++) {
-      if (player.moves.includes(winCombos[i][0]) && player.moves.includes(winCombos[i][1]) && player.moves.includes(winCombos[i][2])) {
+      const isWinner = player.moves.includes(winCombos[i][0]) && player.moves.includes(winCombos[i][1]) && player.moves.includes(winCombos[i][2])
+      if (isWinner) {
         this.winner = true;
         player.isWinner = true;
         player.wins++;
       }
     }
   };
+
+  reset = () => {
+    this.playerOne = new Player('one', '<img class="game-board-piece" src="assets/circle-transparent.png" alt="circle">');
+    this.playerTwo = new Player('two', '<img class="game-board-piece" src="assets/hexagon-transparent.png" alt="hexagon">');
+    this.totalPlays = 0;
+    this.winner = false;
+    this.currentMove;
+  }
 };
