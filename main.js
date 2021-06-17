@@ -1,5 +1,6 @@
 // Global Variables 👇
 var game = new Game();
+var MAX_PLAYS = 9
 
 // Query Selectors 👇
 var buttons = document.querySelectorAll('.btn');
@@ -22,38 +23,50 @@ newGameBtn.addEventListener('click', startOver);
 //Event Handlers and Functions 👇
 function markTicOrTac(e) {
   game.currentMove = e.target.id;
-  if (game.totalPlays % 2 === 0 && game.totalPlays < 9 && e.target.classList.contains('btn')) {
-    game.trackGameBoardPlays(game.playerOne);
-    displayicon(game.playerOne, e.target);
+  var playerOne = game.playerOne
+  var playerTwo = game.playerTwo
+  var totalPlays = game.totalPlays
+
+  const isBtn = e.target.classList.contains('btn')
+  const isEven = totalPlays % 2 === 0
+  const isOdd = totalPlays % 2 === 1
+
+  if (isEven && totalPlays < MAX_PLAYS && isBtn) {
+    checkPlayerWin(playerOne, e)
     playerIcon.src = "assets/hexagon-transparent.png";
-    if (game.totalPlays > 4) {
-      game.checkWinConditions(game.playerOne);
-    }
-    if (game.winner || game.totalPlays === 9) {
-        game.playerOne.saveWinsToStorage();
-        checkForWinAndResetGame();
-        resetGame();
-        refreshWins();
-      }
+
     return;
   }
-  if (game.totalPlays % 2 === 1 && game.totalPlays <= 9 && event.target.classList.contains('btn')) {
-    game.trackGameBoardPlays(game.playerTwo);
-    displayicon(game.playerTwo, e.target);
+
+  if (isOdd && totalPlays <= MAX_PLAYS && isBtn) {
+    checkPlayerWin(playerTwo, e)
     playerIcon.src = "assets/circle-transparent.png";
-    if (game.totalPlays > 4) {
-      game.checkWinConditions(game.playerTwo);
-    }
-    if (game.winner || game.totalPlays === 9) {
-      game.playerTwo.saveWinsToStorage();
-      checkForWinAndResetGame();
-      resetGame();
-      refreshWins();
-    }
   }
 };
 
-function displayicon(player, element) {
+function checkPlayerWin(currentPlayer, e) {
+  var trackGameBoardPlays = game.trackGameBoardPlays
+  var totalPlays = game.totalPlays
+  var reset = game.reset
+  var checkWinConditions = game.checkWinConditions
+
+  trackGameBoardPlays(currentPlayer);
+  displayIcon(currentPlayer, e.target);
+
+  if (totalPlays > 4) {
+    checkWinConditions(currentPlayer);
+  }
+
+
+  if (game.winner || totalPlays === 9) {
+    currentPlayer.saveWinsToStorage();
+    checkForWinAndResetGame();
+    reset();
+    refreshWins();
+  }
+}
+
+function displayIcon(player, element) {
   element.innerHTML = `${player.icon}`;
   element.disabled = true;
 };
@@ -77,31 +90,28 @@ function refreshWins() {
 };
 
 function checkForWinAndResetGame() {
-  if (game.winner && game.playerOne.isWinner) {
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].disabled = true;
-    }
-    show(winnerDisplay);
-    hide(playerTurnDisplay);
-    hide(drawDisplay);
+  const {playerOne} = game
+  if (game.winner && playerOne.isWinner) {
+    setWinner(playerOne)
     winnerIcon.src = 'assets/circle-transparent.png';
     playerOneWinCount.innerText = `${game.playerOne.wins} wins`;
-    setTimeout(resetBoard, 2700);
+
     return;
   }
+
   if (game.winner && game.playerTwo.isWinner) {
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
     }
-    show(winnerDisplay);
-    hide(playerTurnDisplay);
-    hide(drawDisplay);
+
+    setWinner(playerTwo)
     winnerIcon.src = 'assets/hexagon-transparent.png';
     playerTwoWinCount.innerText = `${game.playerTwo.wins} wins`;
-    setTimeout(resetBoard, 2700);
+
     return;
   }
-  if (!game.winner && game.totalPlays === 9) {
+
+  if (!game.winner && game.totalPlays === MAX_PLAYS) {
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
     }
@@ -109,9 +119,21 @@ function checkForWinAndResetGame() {
     hide(playerTurnDisplay);
     show(drawDisplay);
     setTimeout(resetBoard, 2700);
+
     return;
   }
 };
+
+function setWinner() {
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].disabled = true;
+    }
+
+    show(winnerDisplay);
+    hide(playerTurnDisplay);
+    hide(drawDisplay);
+    setTimeout(resetBoard, 2700);
+}
 
 function show(element) {
   element.classList.remove('hidden');
