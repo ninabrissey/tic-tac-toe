@@ -23,37 +23,36 @@ newGameBtn.addEventListener('click', startOver);
 function markTicOrTac(e) {
   game.currentMove = e.target.id;
   if (game.totalPlays % 2 === 0 && game.totalPlays < 9 && e.target.classList.contains('btn')) {
-    game.trackGameBoardPlays(game.playerOne);
-    displayicon(game.playerOne, e.target);
-    playerIcon.src = "assets/hexagon-transparent.png";
-    if (game.totalPlays > 4) {
-      game.checkWinConditions(game.playerOne);
-    }
-    if (game.winner || game.totalPlays === 9) {
-        game.playerOne.saveWinsToStorage();
-        checkForWinAndResetGame();
-        resetGame();
-        refreshWins();
-      }
+    makePlay(game.playerOne, e);
+    playerIcon.src = 'assets/hexagon-transparent.png';
+    checkPlayerWin(game.playerOne);
     return;
   }
   if (game.totalPlays % 2 === 1 && game.totalPlays <= 9 && event.target.classList.contains('btn')) {
-    game.trackGameBoardPlays(game.playerTwo);
-    displayicon(game.playerTwo, e.target);
-    playerIcon.src = "assets/circle-transparent.png";
-    if (game.totalPlays > 4) {
-      game.checkWinConditions(game.playerTwo);
-    }
-    if (game.winner || game.totalPlays === 9) {
-      game.playerTwo.saveWinsToStorage();
-      checkForWinAndResetGame();
-      resetGame();
-      refreshWins();
-    }
+    makePlay(game.playerTwo, e);
+    playerIcon.src = 'assets/circle-transparent.png';
+    checkPlayerWin(game.playerTwo);
   }
 };
 
-function displayicon(player, element) {
+function checkPlayerWin(currentPlayer) {
+  if (game.totalPlays > 4) {
+    game.checkWinConditions(currentPlayer);
+  }
+  if (game.winner || game.totalPlays === 9) {
+    currentPlayer.saveWinsToStorage();
+    checkForWinAndResetGame();
+    game.resetGame();
+    refreshWins();
+  }
+};
+
+function makePlay(currentPlayer, e) {
+  game.trackGameBoardPlays(currentPlayer);
+  displayIcon(currentPlayer, e.target);
+};
+
+function displayIcon(player, element) {
   element.innerHTML = `${player.icon}`;
   element.disabled = true;
 };
@@ -124,10 +123,6 @@ function hide(element) {
 function startOver() {
   localStorage.clear();
   resetBoard();
+  game.resetGame();
   refreshWins();
-};
-
-function resetGame() {
-    game = new Game();
-    return game;
 };
