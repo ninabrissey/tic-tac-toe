@@ -33,7 +33,7 @@ function markTicOrTac(e) {
     playerIcon.src = 'assets/circle-transparent.png';
     checkPlayerWin(game.playerTwo);
   }
-};
+}
 
 function checkPlayerWin(currentPlayer) {
   if (game.totalPlays > 4) {
@@ -45,17 +45,17 @@ function checkPlayerWin(currentPlayer) {
     game.resetGame();
     refreshWins();
   }
-};
+}
 
 function makePlay(currentPlayer, e) {
   game.trackGameBoardPlays(currentPlayer);
   displayIcon(currentPlayer, e.target);
-};
+}
 
 function displayIcon(player, element) {
   element.innerHTML = `${player.icon}`;
   element.disabled = true;
-};
+}
 
 function resetBoard() {
   for (var i = 0; i < buttons.length; i++) {
@@ -66,14 +66,14 @@ function resetBoard() {
     hide(winnerDisplay);
     playerIcon.src = "assets/circle-transparent.png";
   }
-};
+}
 
 function refreshWins() {
   game.playerOne.retrieveWinsFromStorage();
   game.playerTwo.retrieveWinsFromStorage();
   playerOneWinCount.innerText = `${game.playerOne.wins} wins`;
   playerTwoWinCount.innerText = `${game.playerTwo.wins} wins`;
-};
+}
 
 function checkForWinAndResetGame() {
   if (game.winner && game.playerOne.isWinner) {
@@ -110,19 +110,19 @@ function checkForWinAndResetGame() {
     setTimeout(resetBoard, 2700);
     return;
   }
-};
+}
 
 function show(element) {
   element.classList.remove('hidden');
-};
+}
 
 function hide(element) {
   element.classList.add('hidden');
-};
+}
 
 function startOver() {
   localStorage.clear();
   resetBoard();
   game.resetGame();
   refreshWins();
-};
+}

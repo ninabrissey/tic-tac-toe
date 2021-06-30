@@ -5,12 +5,12 @@ class Game {
     this.totalPlays = 0;
     this.winner = false;
     this.currentMove;
-  };
+  }
 
   trackGameBoardPlays(currentPlayer) {
-      this.totalPlays++;
-      currentPlayer.moves.push(parseInt(this.currentMove));
-  };
+    this.totalPlays++;
+    currentPlayer.moves.push(parseInt(this.currentMove));
+  }
 
   checkWinConditions(currentPlayer) {
     var winCombos = [
@@ -24,13 +24,15 @@ class Game {
       [3, 5, 7]
     ];
     for (var i = 0; i < winCombos.length; i++) {
-      if (currentPlayer.moves.includes(winCombos[i][0]) && currentPlayer.moves.includes(winCombos[i][1]) && currentPlayer.moves.includes(winCombos[i][2])) {
+      if (currentPlayer.moves.includes(winCombos[i][0]) &&
+      currentPlayer.moves.includes(winCombos[i][1]) &&
+      currentPlayer.moves.includes(winCombos[i][2])) {
         this.winner = true;
         currentPlayer.isWinner = true;
         currentPlayer.wins++;
       }
     }
-  };
+  }
 
   resetGame() {
     this.playerOne = new Player('one', '<img class="game-board-piece" src="assets/circle-transparent.png" alt="circle">');
@@ -38,5 +40,5 @@ class Game {
     this.totalPlays = 0;
     this.winner = false;
     this.currentMove;
-  };
-};
+  }
+}

@@ -5,13 +5,13 @@ class Player {
     this.wins = 0;
     this.isWinner = false;
     this.moves = [];
-  };
+  }
 
   saveWinsToStorage() {
     var playerId = JSON.stringify(this.id);
     var winTotal = JSON.stringify(this.wins);
     localStorage.setItem(playerId, winTotal);
-  };
+  }
 
   retrieveWinsFromStorage() {
     var playerId = JSON.stringify(this.id);
@@ -20,5 +20,5 @@ class Player {
     if (this.wins === null) {
       this.wins = 0;
     }
-  };
-};
+  }
+}
