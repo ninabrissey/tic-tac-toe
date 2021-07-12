@@ -46,8 +46,8 @@ Will post when page is public!
 ## Set Up
 
 1. Fork this repo  
-2. Clone the repo to your local machine
-3. View the project in the browser by running open index.html in your terminal
+2. In your terminal run ```git clone git@github.com:ninabrissey/tic-tac-toe.git```
+3. In your terminal run ```open index.html in your terminal```
 
 ## Organizational Resources
 - [Notion-Planning-Doc](https://www.notion.so/Final-MOD1-638f24a43d614a6d88189775d6844683)
