@@ -47,7 +47,7 @@ Will post when page is public!
 
 1. Fork this repo  
 2. In your terminal run ```git clone git@github.com:ninabrissey/tic-tac-toe.git```
-3. In your terminal run ```open index.html in your terminal```
+3. In your terminal run ```open index.html```
 
 ## Organizational Resources
 - [Notion-Planning-Doc](https://www.notion.so/Final-MOD1-638f24a43d614a6d88189775d6844683)
