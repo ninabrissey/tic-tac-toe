@@ -35,7 +35,7 @@
 
 ## Deployed Page
 
-Will post when page is public!
+- [tic-tac-toe](https://ninabrissey.github.io/tic-tac-toe/)
 
 ## Possible Future Extensions
 
